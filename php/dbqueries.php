@@ -1,6 +1,7 @@
 <?php
 include("dbconnect.inc.php");
-
+$func = $_GET["func"];
+$category = $_GET["category"];
 $conn = new Connection();
 
 /*
@@ -15,8 +16,16 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
  */
-
-echo $conn->getCategories();
+switch ($func) {
+    case getCategories:
+        echo $conn->getCategories();
+        break;
+    case getProducts:
+        echo $conn->getProducts($category);
+        break;
+    default:
+        echo "No Connection";
+}
 
 $conn->closeConnection();
 ?>

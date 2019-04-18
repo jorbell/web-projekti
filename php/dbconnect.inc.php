@@ -9,50 +9,69 @@ class Connection {
     public function __construct() {
         // Create connection
         $this->connection = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        // Check connection
         if ($this->connection->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
     }
     public function closeConnection() {
+        //Close connection
         $this->connection->close();
     }
-    // Check connection
     public function getCategories() {
-        //$this->connection = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-        //return new mysqli("localhost", "root", "", "projekti");
+        //Query for getting categories
         $sql = "SELECT ID, Name FROM Category";
+        //Commit the query
         $result = $this->connection->query($sql);
+        //Parse result to JSON list
         $answer = '{"categories": [';
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                //echo "Name: " . $row["Name"]. "<br>";
                 $answer = $answer . '{"ID":"' . $row["ID"] . '",' . 
                     '"Name": "' . $row["Name"] .'"},' ;
             }
+            //Trim the last comma
             $answer=rtrim($answer,", ");
+            //Finish parsing
             $answer=$answer . "]}";
-
-            /*
-myObj = {
-  "name":"John",
-  "age":30,
-  "cars": [
-    { "name":"Ford", "models":[ "Fiesta", "Focus", "Mustang" ] },
-    { "name":"BMW", "models":[ "320", "X3", "X5" ] },
-    { "name":"Fiat", "models":[ "500", "Panda" ] }
-  ]
- }
-             */
-
-
-
+            //Retrun the list as a string
+            return $answer;
         } else {
             echo "0 results";
         }
-        return $answer;
         
                 
+    }
+    public function getProducts($category) {
+        //Query for getting the products on selected category
+        $sql = "SELECT ID, Name, Category, Price, Brand, Description, ImagePath FROM Product WHERE Category = '".$category."'";
+        //Commit the query
+        $result = $this->connection->query($sql);
+
+        //Parse result to JSON list
+        $answer = '{"products": [';
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                $answer = $answer . '{"ID":"' . $row["ID"] . '",' . 
+                    '"Name": "' . $row["Name"] . '",' .
+                    '"Category": "' . $row["Category"] . '",' .
+                    '"Price": "' . $row["Price"] . '",' .
+                    '"Brand": "' . $row["Brand"] . '",' .
+                    '"Description": "' . $row["Description"] . '",' .
+                    '"ImagePath": "' . $row["ImagePath"] .'"},' ;
+            }
+            //Trim the last comma
+            $answer=rtrim($answer,", ");
+            //Finish parsing
+            $answer=$answer . "]}";
+
+            //Return the list as a string
+            return $answer;
+        } else {
+            echo "0 results";
+        }
     }
 }
 ?>
