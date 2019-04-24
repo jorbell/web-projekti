@@ -15,6 +15,15 @@ CREATE TABLE Category(
     Name varchar(30)
 );
 
+CREATE TABLE Client(
+    ID integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name varchar(30),
+    Surname varchar(30),
+    Email varchar(80),
+    Client_Products_ID integer,
+
+);
+
 INSERT into Category (Name)
             values ("Electronics");
 INSERT into Category (Name)
@@ -34,4 +43,4 @@ INSERT into Product (Name, Category, Price, Brand, Description, ImagePath)
             values ("TK310", "Audio", 56.99, "AKG", "AKG Headphones", "img/TK310");
 INSERT into Product (Name, Category, Price, Brand, Description, ImagePath)
             values ("ASDF", "Audio", 36.99, "Sennheiser", "Sennheiser Headphones", "img/ASDF");
-SHOW VARIABLES LIKE 'collation_database';
+
