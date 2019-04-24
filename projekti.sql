@@ -26,7 +26,7 @@ CREATE TABLE users(
     user_Firstname varchar(30),
     user_Lastname varchar(30),
     user_Type varchar(80),
-    user_Password varchar(80),
+    user_Password varchar(80)
 );
 
 INSERT into categories (category_name)
