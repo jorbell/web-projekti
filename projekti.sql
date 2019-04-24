@@ -34,3 +34,4 @@ INSERT into Product (Name, Category, Price, Brand, Description, ImagePath)
             values ("TK310", "Audio", 56.99, "AKG", "AKG Headphones", "img/TK310");
 INSERT into Product (Name, Category, Price, Brand, Description, ImagePath)
             values ("ASDF", "Audio", 36.99, "Sennheiser", "Sennheiser Headphones", "img/ASDF");
+SHOW VARIABLES LIKE 'collation_database';
