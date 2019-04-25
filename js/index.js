@@ -42,10 +42,12 @@ function updateView() {
     if (window.location.hash == '#Components') {
         createProductTable("Components");
     }
-    function createProductTable($category){
+    function createProductTable(category){
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    if (xmlhttp.responseText != "0 results"){
+                    console.log(xmlhttp.responseText);
                     var list = JSON.parse(xmlhttp.responseText);
                     var count = Object.keys(list.products).length;
                     var mainDiv = document.getElementById('products');
@@ -78,8 +80,9 @@ function updateView() {
 
                     }
                 }
+            }
             };
-    xmlhttp.open("GET", "php/dbqueries.php?func=getProducts&category="+$category, true);
+    xmlhttp.open("GET", "php/dbqueries.php?func=getProducts&category="+category, true);
     xmlhttp.send();
     }
 }

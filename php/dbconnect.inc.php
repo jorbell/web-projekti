@@ -20,7 +20,7 @@ class Connection {
     }
     public function getCategories() {
         //Query for getting categories
-        $sql = "SELECT ID, Name FROM Category";
+        $sql = "SELECT * FROM categories";
         //Commit the query
         $result = $this->connection->query($sql);
         //Parse result to JSON list
@@ -28,8 +28,8 @@ class Connection {
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                $answer = $answer . '{"ID":"' . $row["ID"] . '",' . 
-                    '"Name": "' . $row["Name"] .'"},' ;
+                $answer = $answer . '{"ID":"' . $row["category_ID"] . '",' . 
+                    '"Name": "' . $row["category_Name"] .'"},' ;
             }
             //Trim the last comma
             $answer=rtrim($answer,", ");
@@ -45,7 +45,7 @@ class Connection {
     }
     public function getProducts($category) {
         //Query for getting the products on selected category
-        $sql = "SELECT ID, Name, Category, Price, Brand, Description, ImagePath FROM Product WHERE Category = '".$category."'";
+        $sql = "SELECT * FROM products INNER JOIN categories on products.product_CategoryID = categories.category_ID  WHERE category_Name = '".$category."'";
         //Commit the query
         $result = $this->connection->query($sql);
 
@@ -54,13 +54,13 @@ class Connection {
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                $answer = $answer . '{"ID":"' . $row["ID"] . '",' . 
-                    '"Name": "' . $row["Name"] . '",' .
-                    '"Category": "' . $row["Category"] . '",' .
-                    '"Price": "' . $row["Price"] . '",' .
-                    '"Brand": "' . $row["Brand"] . '",' .
-                    '"Description": "' . $row["Description"] . '",' .
-                    '"ImagePath": "' . $row["ImagePath"] .'"},' ;
+                $answer = $answer . '{"ID":"' . $row["product_ID"] . '",' . 
+                    '"Name": "' . $row["product_Name"] . '",' .
+                    '"Category": "' . $row["category_Name"] . '",' .
+                    '"Price": "' . $row["product_Price"] . '",' .
+                    '"Brand": "' . $row["product_Brand"] . '",' .
+                    '"Description": "' . $row["product_Description"] . '",' .
+                    '"ImagePath": "' . $row["product_ImagePath"] .'"},' ;
             }
             //Trim the last comma
             $answer=rtrim($answer,", ");
