@@ -5,6 +5,7 @@ window.onhashchange = function(){
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+console.log(xmlhttp.responseText);
         var list = JSON.parse(xmlhttp.responseText);
         var count = Object.keys(list.categories).length;
         var categories = document.getElementById('categories');
@@ -22,10 +23,10 @@ xmlhttp.send();
 
 function updateView() {
     if (window.location.hash == '#cart') {
-            document.getElementById('categories').style.display = 'none';
+        document.getElementById('categories').style.display = 'none';
     }
     if (window.location.hash == '#store') {
-            document.getElementById('categories').style.display = 'block';
+        document.getElementById('categories').style.display = 'block';
     }
     if (window.location.hash == '#Laptops') {
         createProductTable("Laptops");
