@@ -48,4 +48,9 @@ INSERT into products (product_name, product_CategoryID, product_Price, product_B
             values ("TK310", "4", 56.99, "AKG", "AKG Headphones", "img/TK310");
 INSERT into products (product_name, product_CategoryID, product_Price, product_Brand, product_Description, product_ImagePath)
             values ("ASDF", "4", 36.99, "Sennheiser", "Sennheiser Headphones", "img/ASDF");
-
+INSERT into products (product_name, product_CategoryID, product_Price, product_Brand, product_Description, product_ImagePath)
+            values ("ASDF", "1", 36.99, "Siemens", "Washing Maschine", "img/ASDF");
+INSERT into products (product_name, product_CategoryID, product_Price, product_Brand, product_Description, product_ImagePath)
+            values ("Nvidia GTX 2080", "3", 896.99, "Nvidia", "Graphics Processing Unit", "img/ASDF");            
+INSERT into products (product_name, product_CategoryID, product_Price, product_Brand, product_Description, product_ImagePath)
+            values ("Electric Drill", "5", 96.99, "Ryobi", "Electric Drill", "img/ASDF");
