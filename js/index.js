@@ -1,12 +1,16 @@
 window.onhashchange = function(){
     updateView();
 }
-
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-console.log(xmlhttp.responseText);
-        var list = JSON.parse(xmlhttp.responseText);
+    if (this.readyState == 4 && this.status == 200) {
+//console.log(this.responseText);
+
+		//responseText alkaa warning viesteillä jonka takia json.parse ei toimi, tää alla oleva juttu poistaa ennen merkkiä '{' olevan tekstin.
+		var str = this.responseText.substring(this.responseText.indexOf("{"));		
+        var list = JSON.parse(str);
+		console.log(list);
+		
         var count = Object.keys(list.categories).length;
         var categories = document.getElementById('categories');
 
@@ -21,12 +25,13 @@ console.log(xmlhttp.responseText);
 xmlhttp.open("GET", "php/dbqueries.php?func=getCategories", true);
 xmlhttp.send();
 
+
 function updateView() {
     if (window.location.hash == '#cart') {
-        document.getElementById('categories').style.display = 'none';
+            document.getElementById('categories').style.display = 'none';
     }
     if (window.location.hash == '#store') {
-        document.getElementById('categories').style.display = 'block';
+            document.getElementById('categories').style.display = 'block';
     }
     if (window.location.hash == '#Laptops') {
         createProductTable("Laptops");
@@ -49,8 +54,11 @@ function updateView() {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     if (xmlhttp.responseText != "0 results"){
                     console.log(xmlhttp.responseText);
-                    var list = JSON.parse(xmlhttp.responseText);
-                    var count = Object.keys(list.products).length;
+					//sama responseText ratkaisu
+					var str = this.responseText.substring(this.responseText.indexOf("{"));		
+					var list = JSON.parse(str);
+					
+					var count = Object.keys(list.products).length;
                     var mainDiv = document.getElementById('products');
                     mainDiv.innerHTML="";
                     var table = document.createElement('table');
