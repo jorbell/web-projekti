@@ -61,29 +61,42 @@ function updateView() {
 					var count = Object.keys(list.products).length;
                     var mainDiv = document.getElementById('products');
                     mainDiv.innerHTML="";
-                    var table = document.createElement('table');
-                    table.style.cssText = "border: 1px solid black";
+                    //table.style.cssText = "border: 1px solid black";
                     for (var i = 0, len = count; i < len; i++) {
+						var table = document.createElement('table');
+						var row0 = document.createElement('tr');
                         var row1 = document.createElement('tr');
                         var row2 = document.createElement('tr');
+						var row3 = document.createElement('tr');
                         var cell1 = document.createElement('td');
                         var cell2 = document.createElement('td');
                         var cell3 = document.createElement('td');
                         var cell4 = document.createElement('td');
-                        cell1.innerHTML = list.products[i].Name;
+						var cell5 = document.createElement('IMG');
+						
+						cell5.setAttribute("src",list.products[i].ImagePath);
+						cell2.innerHTML = list.products[i].Brand + " " + list.products[i].Name;
+						cell3.innerHTML = list.products[i].Price + "€";
+						cell4.innerHTML = list.products[i].Description;						
+						
+                        /*cell1.innerHTML = list.products[i].Name;
                         cell2.innerHTML = list.products[i].Brand;
                         cell3.innerHTML = list.products[i].Price;
-                        cell4.innerHTML = list.products[i].Description;
+                        cell4.innerHTML = list.products[i].Description;*/
 
                         //Append cells to rows
-                        row1.appendChild(cell1);
                         row1.appendChild(cell2);
-                        row1.appendChild(cell3);
+                        //row1.appendChild(cell1);
+                        //row1.appendChild(cell3);
                         row2.appendChild(cell4);
+						row0.appendChild(cell5);
+						row3.appendChild(cell3);
 
                         //Append rows to table
+						table.appendChild(row0);
+                        table.appendChild(row3);
                         table.appendChild(row1);
-                        table.appendChild(row2);
+						table.appendChild(row2);
                         //Append table to main div
                         mainDiv.appendChild(table);
 

@@ -4,4 +4,5 @@ var categories = document.getElementById('categories');
             row.setAttribute('href', '#juu');
             row.innerHTML = 'Juuuuuu </br>';
             categories.appendChild(row);
+
     }

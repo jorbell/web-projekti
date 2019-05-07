@@ -1,18 +1,16 @@
 <?php
-class Connection { 
+class Connection {
     private $servername = "localhost";
     private $username = "root";
     private $password = "";
     private $dbname = "projekti";
     private $connection;
-
     public function __construct() {
         // Create connection
         $this->connection = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
         // Check connection
         if ($this->connection->connect_error) {
-            die("Connection failed: " . $this->connection->connect_error);
-        }
+			die("Connection failed: " . $this->connection->connect_error);        }
     }
     public function closeConnection() {
         //Close connection
@@ -28,7 +26,7 @@ class Connection {
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                $answer = $answer . '{"ID":"' . $row["category_ID"] . '",' . 
+                $answer = $answer . '{"ID":"' . $row["category_ID"] . '",' .
                     '"Name": "' . $row["category_Name"] .'"},' ;
             }
             //Trim the last comma
@@ -40,21 +38,20 @@ class Connection {
         } else {
             echo "0 results";
         }
-        
-                
+
+
     }
     public function getProducts($category) {
         //Query for getting the products on selected category
         $sql = "SELECT * FROM products INNER JOIN categories on products.product_CategoryID = categories.category_ID  WHERE category_Name = '".$category."'";
         //Commit the query
         $result = $this->connection->query($sql);
-
         //Parse result to JSON list
         $answer = '{"products": [';
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                $answer = $answer . '{"ID":"' . $row["product_ID"] . '",' . 
+                $answer = $answer . '{"ID":"' . $row["product_ID"] . '",' .
                     '"Name": "' . $row["product_Name"] . '",' .
                     '"Category": "' . $row["category_Name"] . '",' .
                     '"Price": "' . $row["product_Price"] . '",' .
@@ -66,7 +63,6 @@ class Connection {
             $answer=rtrim($answer,", ");
             //Finish parsing
             $answer=$answer . "]}";
-
             //Return the list as a string
             return $answer;
         } else {

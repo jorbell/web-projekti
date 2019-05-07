@@ -3,7 +3,6 @@ include("dbconnect.inc.php");
 $func = $_GET["func"];
 $category = $_GET["category"];
 $conn = new Connection();
-
 /*
 $sql = "SELECT Name FROM Category";
 $result = $conn->query($sql);
@@ -26,6 +25,5 @@ switch ($func) {
     default:
         echo "No Connection";
 }
-
 $conn->closeConnection();
 ?>
