@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,7 +16,7 @@
 			<li id="categories"></li>
 		  <ul>
       <li id="login"><a href="#login">Log in</a></li>
-	  <li id="cart"><a href="#cart">Shopping cart</a></li>
+      <li id="cart"><a href="#cart">Shopping cart <?php echo count($_SESSION["cart"]) ?></a></li>
     </ul>
 </nav>
 <div id="center">
