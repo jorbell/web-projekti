@@ -17,6 +17,7 @@ xmlhttp.onreadystatechange = function() {
         for (var i = 0, len = count; i < len; i++) {
             var row = document.createElement('a');
             row.setAttribute('href', '#'+list.categories[i].Name);
+			row.setAttribute('id', list.categories[i].Name);
             row.innerHTML = list.categories[i].Name + "<br>";
             categories.appendChild(row);
         }
@@ -24,9 +25,18 @@ xmlhttp.onreadystatechange = function() {
 };
 xmlhttp.open("GET", "php/dbqueries.php?func=getCategories", true);
 xmlhttp.send();
+function regularColor(){
+	document.querySelector("#Laptops").style.backgroundColor = '#333';
+	document.querySelector("#Tools").style.backgroundColor = '#333';
+	document.querySelector("#Electronics").style.backgroundColor = '#333';
+	document.querySelector("#Audio").style.backgroundColor = '#333';
+	document.querySelector("#Components").style.backgroundColor = '#333';
+}
 
 
 function updateView() {
+
+	
     if (window.location.hash == '#cart') {
             document.getElementById('categories').style.display = 'none';
         getShoppingCart();
@@ -36,18 +46,28 @@ function updateView() {
     }
     if (window.location.hash == '#Laptops') {
         createProductTable("Laptops");
+		regularColor();
+		document.querySelector('#Laptops').style.backgroundColor = 'black';
     }
     if (window.location.hash == '#Tools') {
         createProductTable("Tools");
+		regularColor();
+		document.querySelector('#Tools').style.backgroundColor = 'black';
     }
     if (window.location.hash == '#Electronics') {
         createProductTable("Electronics");
+		regularColor();		
+		document.querySelector('#Electronics').style.backgroundColor = 'black';
     }
     if (window.location.hash == '#Audio') {
         createProductTable("Audio");
+		regularColor();		
+		document.querySelector('#Audio').style.backgroundColor = 'black';
     }
     if (window.location.hash == '#Components') {
         createProductTable("Components");
+		regularColor();		
+		document.querySelector('#Components').style.backgroundColor = 'black';
     }
     function getShoppingCart(){
         var mainDiv = document.getElementById('products');
@@ -55,12 +75,13 @@ function updateView() {
         mainDiv.innerHTML;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
-            console.log(xmlhttp.responseText);
+            //console.log(xmlhttp.responseText);
             if (this.readyState == 4 && this.status == 200) {
                     //console.log(this.responseText);
-		var str = this.responseText.substring(this.responseText.indexOf("{"));		
-		var list = JSON.parse(str);
-                mainDiv.innerHTML = list;                
+				var str = this.responseText.substring(this.responseText.indexOf("{"));		
+				var list = JSON.parse(str);
+                mainDiv.innerHTML = list;
+                
             }
         };
         xmlhttp.open("GET", "php/dbqueries.php?func=getCart", true);
@@ -86,6 +107,7 @@ function updateView() {
                         var row1 = document.createElement('tr');
                         var row2 = document.createElement('tr');
                         var row3 = document.createElement('tr');
+						var row4 = document.createElement('tr');
                         var cell1 = document.createElement('td');
                         var cell2 = document.createElement('td');
                         var cell3 = document.createElement('td');
@@ -109,13 +131,14 @@ function updateView() {
                         row2.appendChild(cell4);
                         row0.appendChild(cell5);
                         row3.appendChild(cell3);
-                        row2.appendChild(cell1);
+                        row4.appendChild(cell1);
 
                         //Append rows to table
                         table.appendChild(row0);
                         table.appendChild(row3);
                         table.appendChild(row1);
                         table.appendChild(row2);
+						table.appendChild(row4);
                         //Append table to main div
                         mainDiv.appendChild(table);
 
