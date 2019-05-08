@@ -2,7 +2,7 @@
 class Connection {
     private $servername = "localhost";
     private $username = "root";
-    private $password = "";
+    private $password = "a1564x";
     private $dbname = "projekti";
     private $connection;
     public function __construct() {
@@ -41,26 +41,6 @@ class Connection {
 
 
     }
-    public function getItem($productID){
-        $sql = "SELECT * FROM products INNER JOIN categories on products.product_CategoryID = categories.category_ID  WHERE product_ID = '".$productID."'";
-
-        $result = $this->connection->query($sql);
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while($row = $result->fetch_assoc()) {
-                $answer = $answer . '{"ID":"' . $row["product_ID"] . '",' .
-                    '"Name": "' . $row["product_Name"] . '",' .
-                    '"Category": "' . $row["category_Name"] . '",' .
-                    '"Price": "' . $row["product_Price"] . '",' .
-                    '"Brand": "' . $row["product_Brand"] . '",' .
-                    '"Description": "' . $row["product_Description"] . '",' .
-                    '"ImagePath": "' . $row["product_ImagePath"] .'"},' ;
-            } 
-            return $answer;
-        }else {
-            echo "0 results";
-        }
-    }
     public function getProducts($category) {
         //Query for getting the products on selected category
         $sql = "SELECT * FROM products INNER JOIN categories on products.product_CategoryID = categories.category_ID  WHERE category_Name = '".$category."'";
@@ -87,6 +67,32 @@ class Connection {
             return $answer;
         } else {
             echo "0 results";
+        }
+    }
+
+    public function getUser($user) {
+        //Query for getting the products on selected category
+        $sql = "SELECT * FROM users WHERE user_Username = '".$user."'";
+        //Commit the query
+        $result = $this->connection->query($sql);
+
+        if ($result->num_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getPass($pass) {
+        //Query for getting the products on selected category
+        $sql = "SELECT * FROM users WHERE user_Password = '".$pass."'";
+        //Commit the query
+        $result = $this->connection->query($sql);
+
+        if ($result->num_rows > 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
