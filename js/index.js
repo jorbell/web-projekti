@@ -58,8 +58,9 @@ function updateView() {
             console.log(xmlhttp.responseText);
             if (this.readyState == 4 && this.status == 200) {
                     //console.log(this.responseText);
-                mainDiv.innerHTML = xmlhttp.responseText;
-                
+		var str = this.responseText.substring(this.responseText.indexOf("{"));		
+		var list = JSON.parse(str);
+                mainDiv.innerHTML = list;                
             }
         };
         xmlhttp.open("GET", "php/dbqueries.php?func=getCart", true);
