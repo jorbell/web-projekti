@@ -41,16 +41,16 @@ INSERT into categories (category_name)
             values ("Tools");
 
 INSERT into products (product_name, product_CategoryID, product_Price, product_Brand, product_Description, product_ImagePath)
-            values ("T480", "2", 399.99, "Lenovo", "Lenovo T480 with intel I7", "img/lenovoT80");
+            values ("T480", "2", 399.99, "Lenovo", "Lenovo T480 with intel I7", "img/t580");
 INSERT into products (product_name, product_CategoryID, product_Price, product_Brand, product_Description, product_ImagePath)
-            values ("UR8860", "2", 649.99, "ASUS", "ASUS UR8860 laptop with Nvidia Graphics", "img/ASUSUR8860");
+            values ("UR8860", "2", 649.99, "ASUS", "ASUS UR8860 laptop with Nvidia Graphics", "img/t580");
 INSERT into products (product_name, product_CategoryID, product_Price, product_Brand, product_Description, product_ImagePath)
-            values ("TK310", "4", 56.99, "AKG", "AKG Headphones", "img/TK310");
+            values ("TK310", "4", 56.99, "AKG", "AKG Headphones", "img/t580");
 INSERT into products (product_name, product_CategoryID, product_Price, product_Brand, product_Description, product_ImagePath)
-            values ("ASDF", "4", 36.99, "Sennheiser", "Sennheiser Headphones", "img/ASDF");
+            values ("ASDF", "4", 36.99, "Sennheiser", "Sennheiser Headphones", "img/t580");
 INSERT into products (product_name, product_CategoryID, product_Price, product_Brand, product_Description, product_ImagePath)
-            values ("ASDF", "1", 36.99, "Siemens", "Washing Maschine", "img/ASDF");
+            values ("ASDF", "1", 36.99, "Siemens", "Washing Maschine", "img/t580");
 INSERT into products (product_name, product_CategoryID, product_Price, product_Brand, product_Description, product_ImagePath)
-            values ("Nvidia GTX 2080", "3", 896.99, "Nvidia", "Graphics Processing Unit", "img/ASDF");            
+            values ("Nvidia GTX 2080", "3", 896.99, "Nvidia", "Graphics Processing Unit", "img/t580");            
 INSERT into products (product_name, product_CategoryID, product_Price, product_Brand, product_Description, product_ImagePath)
-            values ("Electric Drill", "5", 96.99, "Ryobi", "Electric Drill", "img/ASDF");
+            values ("Electric Drill", "5", 96.99, "Ryobi", "Electric Drill", "img/t580");
