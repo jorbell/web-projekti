@@ -28,6 +28,13 @@ CREATE TABLE users(
     user_Type varchar(80),
     user_Password varchar(80)
 );
+CREATE TABLE orders(
+    order_ID integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_ID integer NOT NULL(3),
+    ordered_items varchar(999),
+    price integer(6),
+    order_date datetime
+);
 
 INSERT into categories (category_name)
             values ("Electronics");

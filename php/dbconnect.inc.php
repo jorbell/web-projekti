@@ -2,7 +2,7 @@
 class Connection {
     private $servername = "localhost";
     private $username = "root";
-    private $password = "a1564x";
+    private $password = "";
     private $dbname = "projekti";
     private $connection;
     public function __construct() {

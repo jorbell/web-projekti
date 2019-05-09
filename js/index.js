@@ -39,8 +39,7 @@ function regularColor(){
 
 
 function updateView() {
-
-	
+    updateCartSize();	
     if (window.location.hash == '#cart') {
             document.getElementById('categories').style.display = 'none';
         getShoppingCart();
@@ -142,7 +141,6 @@ function updateView() {
                                 if (this.readyState == 4 && this.status == 200) {
                                     console.log(http.responseText);
                                     updateView();
-                                    updateCartSize();
                                     
                                 }
                             };
@@ -253,7 +251,6 @@ function updateView() {
                                 if (this.readyState == 4 && this.status == 200) {
                                     console.log(xmlhttp.responseText);
                                     updateView();
-                                    updateCartSize();
                                     
                                 }
                             };
