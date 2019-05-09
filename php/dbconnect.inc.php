@@ -118,5 +118,12 @@ class Connection {
             return false;
         }
     }
+
+    public function createUser($userName, $userFirstname, $userLastname, $userPassword) {
+        //Query for getting the products on selected category
+        $sql = "INSERT INTO users (user_Username, user_Firstname, user_Lastname, user_Password) VALUES ('".$userName."', '".$userFirstname."', '".$userLastname."', '".$userPassword."');";
+        $this->connection->query($sql);
+    }
+
 }
 ?>

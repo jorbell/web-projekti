@@ -15,7 +15,7 @@ session_start();
 	      <ul class="row">
 			<li id="categories"></li>
 		  <ul>
-      <li id="login"><a href="#login">Log in</a></li>
+      <li id="login"><a href="login.html">Log in</a></li>
       <li id="cart"><a href="#cart">Shopping cart <?php echo count($_SESSION["cart"]) ?></a></li>
     </ul>
 </nav>
