@@ -34,7 +34,6 @@ function regularColor(){
 	document.querySelector("#Electronics").style.backgroundColor = '#333';
 	document.querySelector("#Audio").style.backgroundColor = '#333';
 	document.querySelector("#Components").style.backgroundColor = '#333';
-	document.querySelector("#Sales").style.backgroundColor = '#333';
 }
 
 
@@ -72,13 +71,6 @@ function updateView() {
         createProductTable("Components");
 		regularColor();		
 		document.querySelector('#Components').style.backgroundColor = 'black';
-    }
-	if (window.location.hash == '' || window.location.hash == '#Sales') {
-        createProductTable("Sales");
-		regularColor();		
-		if(window.location.hash == '#Sales') {
-			document.querySelector('#Sales').style.backgroundColor = 'black';
-		}
     }
     function getShoppingCart(){
         var mainDiv = document.getElementById('products');
