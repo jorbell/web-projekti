@@ -182,11 +182,12 @@ function updateView() {
             //console.log(xmlhttp.responseText);
             if (this.readyState == 4 && this.status == 200) {
                 //console.log(this.responseText);
+                var str = this.responseText.substring(this.responseText.indexOf("{")+1);
 
-                document.getElementById("login").innerHTML = '<a href="#login">Username: '+xmlhttp.responseText+' </a>';
+                document.getElementById("login").innerHTML = '<a href="#login">Username: '+str+' </a>';
             }
         };
-        xmlhttp.open("GET", "php/dbqueries.php?func=getUser", false);
+        xmlhttp.open("GET", "php/dbqueries.php?func=getUser", true);
         xmlhttp.send();
     }
 
