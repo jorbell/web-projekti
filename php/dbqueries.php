@@ -32,10 +32,14 @@ switch ($func) {
         array_push($_SESSION["cart"], $productInfo);
         echo $productInfo;
         break;
+    case removeFromCart:
+        array_splice($_SESSION["cart"], $product, 1);
+        echo $product;
+        break;
     case getCart:
-        $cart = '{"cart": [';
+        $cart = '{"products": [';
         for ($i = 0; $i < count($_SESSION["cart"]); $i++) {
-           $cart = $cart . $_SESSION["cart"][1];
+           $cart = $cart . $_SESSION["cart"][$i];
         }
         //Trim the last comma
         $cart=rtrim($cart,", ");
