@@ -34,6 +34,7 @@ function regularColor(){
 	document.querySelector("#Electronics").style.backgroundColor = '#333';
 	document.querySelector("#Audio").style.backgroundColor = '#333';
 	document.querySelector("#Components").style.backgroundColor = '#333';
+	document.querySelector("#Sales").style.backgroundColor = '#333';
 }
 
 
