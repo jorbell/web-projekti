@@ -71,6 +71,13 @@ function updateView() {
 		regularColor();		
 		document.querySelector('#Components').style.backgroundColor = 'black';
     }
+	if (window.location.hash == '' || window.location.hash == '#Sales') {
+        createProductTable("Sales");
+		regularColor();		
+		if(window.location.hash == '#Sales') {
+			document.querySelector('#Sales').style.backgroundColor = 'black';
+		}
+    }
     function getShoppingCart(){
         var mainDiv = document.getElementById('products');
         mainDiv.innerHTML = "";
