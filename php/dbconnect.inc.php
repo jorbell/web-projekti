@@ -93,9 +93,9 @@ class Connection {
         }
     }
 
-    public function getUser($user) {
+    public function getUserPass($user, $pass) {
         //Query for getting the products on selected category
-        $sql = "SELECT * FROM users WHERE user_Username = '".$user."'";
+        $sql = "SELECT * FROM users WHERE user_Username = '" .$user. "'&& user_Password = '" .$pass. "'";
         //Commit the query
         $result = $this->connection->query($sql);
 
@@ -105,10 +105,9 @@ class Connection {
             return false;
         }
     }
-
-    public function getPass($pass) {
+    public function getUser($user) {
         //Query for getting the products on selected category
-        $sql = "SELECT * FROM users WHERE user_Password = '".$pass."'";
+        $sql = "SELECT * FROM users WHERE user_Username = '" .$user. "'";
         //Commit the query
         $result = $this->connection->query($sql);
 

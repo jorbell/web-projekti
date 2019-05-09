@@ -48,6 +48,14 @@ switch ($func) {
         //Return the list as a string
         echo $cart;
         break;
+    case getUser:
+        if (isset($_SESSION['user'])) {
+            echo '{Username: ' . $_SESSION['user'] . '<a href="php/logout.php">Log out</a>';
+        } else {
+            echo '{<a href="login.html">Log In</a>';
+        }
+
+        break;
     default:
         echo "No Connection";
 }

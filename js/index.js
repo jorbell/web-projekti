@@ -80,6 +80,7 @@ function updateView() {
 			document.querySelector('#Sales').style.backgroundColor = 'black';
 		}
     }
+
     function getShoppingCart(){
         var mainDiv = document.getElementById('products');
         mainDiv.innerHTML = "";
@@ -175,7 +176,7 @@ function updateView() {
 
     function updateUserName(){
         var login = document.getElementById('login');
-        login.innerHTML = "";
+        login.innerHTML = '<a href="login.html">Log In</a>';
         login.innerHTML;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
@@ -184,7 +185,7 @@ function updateView() {
                 //console.log(this.responseText);
                 var str = this.responseText.substring(this.responseText.indexOf("{")+1);
 
-                document.getElementById("login").innerHTML = '<a href="#login">Username: '+str+' </a>';
+                document.getElementById("login").innerHTML = '<a href="#ownprofile"> '+str+' </a>';
             }
         };
         xmlhttp.open("GET", "php/dbqueries.php?func=getUser", true);
