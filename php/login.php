@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Created by PhpStorm.
  * User: vladimg
@@ -10,7 +11,7 @@ include("dbconnect.inc.php");
 $connection = new Connection();
 
     if($connection->getUser($_GET['email']) == true AND $connection->getPass($_GET['pwd']) == true){
-        $_SESSION['admin'] = $admin;
+        $_SESSION['user'] = $_GET['email'];
         echo '<p>User and password are correct</p>';
 
         header("Location: ../index.php");

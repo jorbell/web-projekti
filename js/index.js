@@ -75,6 +75,7 @@ function updateView() {
     }
 	if (window.location.hash == '' || window.location.hash == '#Sales') {
         createProductTable("Sales");
+        updateUserName();
 		regularColor();		
 		if(window.location.hash == '#Sales') {
 			document.querySelector('#Sales').style.backgroundColor = 'black';
@@ -173,6 +174,24 @@ function updateView() {
         xmlhttp.open("GET", "php/dbqueries.php?func=getCart", true);
         xmlhttp.send();
     }
+
+    function updateUserName(){
+        var login = document.getElementById('login');
+        login.innerHTML = "";
+        login.innerHTML;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            //console.log(xmlhttp.responseText);
+            if (this.readyState == 4 && this.status == 200) {
+                //console.log(this.responseText);
+
+                document.getElementById("login").innerHTML = '<a href="#login">Username: '+xmlhttp.responseText+' </a>';
+            }
+        };
+        xmlhttp.open("GET", "php/dbqueries.php?func=getUser", false);
+        xmlhttp.send();
+    }
+
     function createProductTable(category){
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
