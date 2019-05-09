@@ -11,7 +11,7 @@ session_start();
 <body>
 <nav class="top">
     <ul class="ultop">
-	  <li id="main"><a id="home" href="#store">Webstore</a></li>
+	  <li id="main"><a id="home" href="index.php">Webstore</a></li>
 	      <ul class="row">
 			<li id="categories"></li>
 		  <ul>
