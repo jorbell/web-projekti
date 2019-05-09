@@ -141,6 +141,7 @@ function updateView() {
                                 if (this.readyState == 4 && this.status == 200) {
                                     console.log(http.responseText);
                                     updateView();
+                                    updateCartSize();
                                     
                                 }
                             };
@@ -149,6 +150,24 @@ function updateView() {
 
                         });
                     }
+            }
+        };
+        xmlhttp.open("GET", "php/dbqueries.php?func=getCart", true);
+        xmlhttp.send();
+    }
+    function updateCartSize(){
+        var mainDiv = document.getElementById('products');
+        mainDiv.innerHTML = "";
+        mainDiv.innerHTML;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            //console.log(xmlhttp.responseText);
+            if (this.readyState == 4 && this.status == 200) {
+                    //console.log(this.responseText);
+                var str = this.responseText.substring(this.responseText.indexOf("{"));		
+                var list = JSON.parse(str);
+                var count = Object.keys(list.products).length;
+                document.getElementById("cart").innerHTML = '<a href="#cart">Shopping cart: '+count+' </a>';
             }
         };
         xmlhttp.open("GET", "php/dbqueries.php?func=getCart", true);
@@ -174,7 +193,7 @@ function updateView() {
                         var row1 = document.createElement('tr');
                         var row2 = document.createElement('tr');
                         var row3 = document.createElement('tr');
-						var row4 = document.createElement('tr');
+                        var row4 = document.createElement('tr');
                         var cell1 = document.createElement('td');
                         var cell2 = document.createElement('td');
                         var cell3 = document.createElement('td');
@@ -215,6 +234,7 @@ function updateView() {
                                 if (this.readyState == 4 && this.status == 200) {
                                     console.log(xmlhttp.responseText);
                                     updateView();
+                                    updateCartSize();
                                     
                                 }
                             };
