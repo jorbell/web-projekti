@@ -42,7 +42,9 @@ class Connection {
 
     }
     public function orderItems($items){
+	//Query for getting categories
         $sql = 'INSERT INTO orders (user_ID, ordered_items) VALUES ("'.$_SESSION["userID"].'","'."'".$items."'".'")';
+        //Commit the query
         $this->connection->query($sql);
         return "true";
     }
