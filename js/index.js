@@ -4,15 +4,17 @@ window.onhashchange = function(){
 window.onload = function(){
     updateView();
 }
+//
+//Hakee tietokannasta kategoriat ja lisää ne etusivulle
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
 //console.log(this.responseText);
 
-		//responseText alkaa warning viesteillä jonka takia json.parse ei toimi, tää alla oleva juttu poistaa ennen merkkiä '{' olevan tekstin.
-		var str = this.responseText.substring(this.responseText.indexOf("{"));		
+	//responseText alkaa warning viesteillä jonka takia json.parse ei toimi, tää alla oleva juttu poistaa ennen merkkiä '{' olevan tekstin.
+	var str = this.responseText.substring(this.responseText.indexOf("{"));		
         var list = JSON.parse(str);
-		console.log(list);
+	//console.log(list);
 		
         var count = Object.keys(list.categories).length;
         var categories = document.getElementById('categories');
@@ -20,7 +22,7 @@ xmlhttp.onreadystatechange = function() {
         for (var i = 0, len = count; i < len; i++) {
             var row = document.createElement('a');
             row.setAttribute('href', '#'+list.categories[i].Name);
-			row.setAttribute('id', list.categories[i].Name);
+		row.setAttribute('id', list.categories[i].Name);
             row.innerHTML = list.categories[i].Name + "<br>";
             categories.appendChild(row);
         }
@@ -29,6 +31,7 @@ xmlhttp.onreadystatechange = function() {
 xmlhttp.open("GET", "php/dbqueries.php?func=getCategories", true);
 xmlhttp.send();
 
+//laittaa kategorioiden värit takaisin normaaliksi
 function regularColor(){
 	document.querySelector("#Laptops").style.backgroundColor = '#333';
 	document.querySelector("#Tools").style.backgroundColor = '#333';
@@ -38,7 +41,7 @@ function regularColor(){
 	document.querySelector("#Sales").style.backgroundColor = '#333';
 }
 
-
+//päivittää mitä etusivulla näytetään
 function updateView() {
     updateCartSize();	
     if (window.location.hash == '#cart') {
@@ -52,6 +55,7 @@ function updateView() {
     }
     if (window.location.hash == '#Laptops') {
         createProductTable("Laptops");
+	    //vaihtaa kategorioiden värit normaaliksi ja sitten vaihtaa valitun kategorian mustaksi
 		regularColor();
 		document.querySelector('#Laptops').style.backgroundColor = 'black';
     }
@@ -83,6 +87,7 @@ function updateView() {
 			document.querySelector('#Sales').style.backgroundColor = 'black';
 		}
     }
+	//Ostaminen
     function checkout(){
         var mainDiv = document.getElementById('products');
         var xmlhttp = new XMLHttpRequest();
@@ -122,7 +127,7 @@ function updateView() {
         xmlhttp.send();
 
     }
-
+//tilauksen lisääminen tietokantaan
     function orderItems(){
         var mainDiv = document.getElementById('products');
         mainDiv.innerHTML = "";
@@ -140,7 +145,7 @@ function updateView() {
         xmlhttp.send();
 
     }
-
+//luo ostoskorin, valittujen tuotteiden perusteella
     function getShoppingCart(){
         var mainDiv = document.getElementById('products');
         mainDiv.innerHTML = "";
@@ -152,7 +157,7 @@ function updateView() {
                     //console.log(this.responseText);
                 var str = this.responseText.substring(this.responseText.indexOf("{"));		
                 var list = JSON.parse(str);
-                console.log(str);
+                //console.log(str);
                 
                     mainDiv.innerHTML = '<div style="align:center"><form action ="#checkout"><button style="align:center" id="checkout">Checkout</button></form></div>'
                     var count = Object.keys(list.products).length;
@@ -174,15 +179,9 @@ function updateView() {
                         cell2.innerHTML = list.products[i].Brand + " " + list.products[i].Name;
                         cell3.innerHTML = list.products[i].Price + "€";
                         cell4.innerHTML = list.products[i].Description;						
-                        /*cell1.innerHTML = list.products[i].Name;
-                        cell2.innerHTML = list.products[i].Brand;
-                        cell3.innerHTML = list.products[i].Price;
-                        cell4.innerHTML = list.products[i].Description;*/
 
                         //Append cells to rows
                         row1.appendChild(cell2);
-                        //row1.appendChild(cell1);
-                        //row1.appendChild(cell3);
                         row2.appendChild(cell4);
                         row0.appendChild(cell5);
                         row3.appendChild(cell3);
@@ -216,6 +215,7 @@ function updateView() {
         xmlhttp.open("GET", "php/dbqueries.php?func=getCart", true);
         xmlhttp.send();
     }
+	//muuttaa ostoskorin numeroa
     function updateCartSize(){
         var mainDiv = document.getElementById('products');
         mainDiv.innerHTML = "";
@@ -234,7 +234,7 @@ function updateView() {
         xmlhttp.open("GET", "php/dbqueries.php?func=getCart", true);
         xmlhttp.send();
     }
-
+//näyttää/muuttaa käyttäjätunnusta
     function updateUserName(){
         var login = document.getElementById('login');
         login.innerHTML = '<a href="login.html">Log In</a>';
@@ -252,7 +252,7 @@ function updateView() {
         xmlhttp.open("GET", "php/dbqueries.php?func=getUser", true);
         xmlhttp.send();
     }
-
+//luo tuote luettelon, valitun kategorian mukaan
     function createProductTable(category){
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
