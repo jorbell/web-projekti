@@ -30,10 +30,10 @@
 include("dbconnect.inc.php");
 
 $connection = new Connection();
-
+//kertoo jos tunnus on jo olemassa
 if($connection->getUser($_GET['email']) == true ){
     echo '<div class="alert alert-info"><strong>Info!</strong> The username is already exsists.</div>';
-}else {
+}else { //ilmoittaa että tunnuseten tekeminen onnistui
     $connection->createUser($_GET['email'], $_GET['firstname'], $_GET['lastname'], $_GET['pwd']);
     $_SESSION['user'] = $_GET['email'];
     echo '<div class="alert alert-success"><strong>Success!</strong> The username is created.</div>';
