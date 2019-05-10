@@ -46,6 +46,8 @@ INSERT into categories (category_name)
             values ("Audio");
 INSERT into categories (category_name)
             values ("Tools");
+INSERT into categories (category_name)
+            values ("Sales");		    
 
 INSERT into products (product_name, product_CategoryID, product_Price, product_Brand, product_Description, product_ImagePath)
             values ("ZenBook 13 UX331UA", "2", 499.99, "Asus", "Kevyt ja kompakti Asus ZenBook 13 -kannettava hurmaa ajattomalla tyylikkyydellaan ja sujuvalla toiminnallaan.", "img/ux331ua.webp");
