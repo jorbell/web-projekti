@@ -30,7 +30,7 @@ session_start();
 include("dbconnect.inc.php");
 
 $connection = new Connection();
-
+    //testaa onko tietokannassa olevat salasana ja tunnus oikein
     if($connection->getUserPass($_GET['email'], $_GET['pwd']) == true){
         $_SESSION['user'] = $_GET['email'];
         unset($_SESSION['cart']);
