@@ -28,6 +28,7 @@ xmlhttp.onreadystatechange = function() {
 };
 xmlhttp.open("GET", "php/dbqueries.php?func=getCategories", true);
 xmlhttp.send();
+
 function regularColor(){
 	document.querySelector("#Laptops").style.backgroundColor = '#333';
 	document.querySelector("#Tools").style.backgroundColor = '#333';
@@ -41,8 +42,10 @@ function regularColor(){
 function updateView() {
     updateCartSize();	
     if (window.location.hash == '#cart') {
-            document.getElementById('categories').style.display = 'none';
         getShoppingCart();
+    }
+    if (window.location.hash == "#checkout") {
+        checkout();
     }
     if (window.location.hash == '#store') {
             document.getElementById('categories').style.display = 'block';
@@ -80,6 +83,63 @@ function updateView() {
 			document.querySelector('#Sales').style.backgroundColor = 'black';
 		}
     }
+    function checkout(){
+        var mainDiv = document.getElementById('products');
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            //console.log(xmlhttp.responseText);
+            if (this.readyState == 4 && this.status == 200) {
+                    //console.log(this.responseText);
+                var str = this.responseText.substring(this.responseText.indexOf("{"));		
+                var list = JSON.parse(str);
+                console.log(str);
+                    var mainDiv = document.getElementById('products');
+                    mainDiv.innerHTML = "";
+                
+                    var table = document.createElement('table');
+                    var totalprice = 0;
+                    table.setAttribute("class", "checkout");
+                    var innerhtml = '<thead align="left"><tr><th>Name</th><th>Brand</th><th>price</th></thead>';
+                    var count = Object.keys(list.products).length;
+                    for (var i = 0, len = count; i < len; i++) {
+                        innerhtml = innerhtml + '<tr><td>'+list.products[i].Name+'</td><td>'+list.products[i].Brand+'</td><td>'+list.products[i].Price+'</td></tr>'
+                        totalprice = totalprice + parseFloat(list.products[i].Price);
+                    }
+                    table.innerHTML = innerhtml + "<tr><td>TOTAL: </td><td></td><td>"+totalprice+"</td>";
+                    mainDiv.appendChild(table);
+                    var order = document.createElement('button'); 
+                    order.setAttribute("class","btn btn-primary");
+                    order.setAttribute("id","order");
+                    order.innerHTML = "Order";
+                    mainDiv.appendChild(order);
+                    order.onclick = function (){
+                        orderItems();
+                    };
+                    
+            }
+        };
+        xmlhttp.open("GET", "php/dbqueries.php?func=getCart", true);
+        xmlhttp.send();
+
+    }
+
+    function orderItems(){
+        var mainDiv = document.getElementById('products');
+        mainDiv.innerHTML = "";
+        mainDiv.innerHTML;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            //console.log(xmlhttp.responseText);
+            if (this.readyState == 4 && this.status == 200) {
+                if(xmlhttp.responseText == "true"){
+                    window.alert("Products ordered");
+                }
+            }
+        };
+        xmlhttp.open("GET", "php/dbqueries.php?func=order", true);
+        xmlhttp.send();
+
+    }
 
     function getShoppingCart(){
         var mainDiv = document.getElementById('products');
@@ -94,6 +154,7 @@ function updateView() {
                 var list = JSON.parse(str);
                 console.log(str);
                 
+                    mainDiv.innerHTML = '<div style="align:center"><form action ="#checkout"><button style="align:center" id="checkout">Checkout</button></form></div>'
                     var count = Object.keys(list.products).length;
                     for (var i = 0, len = count; i < len; i++) {
                         var table = document.createElement('table');

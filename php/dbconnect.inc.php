@@ -41,6 +41,11 @@ class Connection {
 
 
     }
+    public function orderItems($items){
+        $sql = 'INSERT INTO orders (user_ID, ordered_items) VALUES ("'.$_SESSION["userID"].'","'."'".$items."'".'")';
+        $this->connection->query($sql);
+        return "true";
+    }
     public function getItem($ID) {
         //Query for getting the products on selected category
         $sql = "SELECT * FROM products INNER JOIN categories on products.product_CategoryID = categories.category_ID  WHERE product_ID = '".$ID."'";
@@ -100,6 +105,8 @@ class Connection {
         $result = $this->connection->query($sql);
 
         if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $_SESSION["userID"] = $row["user_ID"];
             return true;
         } else {
             return false;

@@ -39,6 +39,15 @@ table{
 	border-radius: 7px;
 
 }
+table.checkout{
+	background-color: white;
+	margin: 30px 10px 0px 10px;
+	border: 2px outset black;
+	width: 500px;
+	height: auto;
+	float: left;
+        border-radius: 0px;
+}
 IMG{
 	width: 220px;
 	height: 180px;

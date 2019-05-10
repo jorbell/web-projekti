@@ -48,6 +48,18 @@ switch ($func) {
         //Return the list as a string
         echo $cart;
         break;
+    case order:
+        $cart = '{"products": [';
+        for ($i = 0; $i < count($_SESSION["cart"]); $i++) {
+           $cart = $cart . $_SESSION["cart"][$i];
+        }
+        //Trim the last comma
+        $cart=rtrim($cart,", ");
+        //Finish parsing
+        $cart=$cart . "]}";
+        $_SESSION["cart"] = array();
+        echo $conn->orderItems(str_replace('"', "|", $cart));
+        break;
     case getUser:
         if (isset($_SESSION['user'])) {
             echo '{Username: ' . $_SESSION['user'] . '<a href="php/logout.php">Log out</a>';
